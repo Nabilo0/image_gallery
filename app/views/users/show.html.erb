@@ -1,0 +1,15 @@
+<h2>My Profile</h2>
+
+<% if current_user.id == @user.id %>
+<p></p>
+
+<p><%= image_tag @user.avatar.url(:thumb) %></p>
+	<p> Nick Name : <%= @user.nick_name%></p>
+	<p> Email: <%= @user.email%> </p>
+	
+<%= link_to "Edit User", edit_user_path(current_user)%></br>
+
+ <% else %>
+
+<%= link_to "Sign in", login_path%>
+	<% end %>
