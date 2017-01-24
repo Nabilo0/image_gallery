@@ -1,1 +1,26 @@
 <h1>Home page</h1>
+<% if current_user != nil %>
+	<p>hello </p>
+		<% if current_user.followers.count >= 1 %>
+				<% current_user.followers.each do |follower| %>
+					<%=follower.nick_name %></br>
+						<%  last_post = follower.posts.last %>
+    		<p><%= image_tag last_post.avatar.url(:thumb) %></p></br>
+  	<p><%= last_post.discarption %></p></br>
+	<% end %>
+	<% end %>
+
+	<% else %>
+
+	<p>Sign in mother fucker  </p>
+	
+		<% end %>
+
+<!-- 
+		if you want all the post of user so we should to do
+		at line 7 
+		follower.posts.each do |post|
+		post.discarption
+		end
+		coz this is loop for all user's post
+ -->
