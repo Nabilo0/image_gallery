@@ -35,8 +35,9 @@
       <% if current_user %>
 			<%= link_to "My Profile", user_path(current_user.id), class:"navbar-brand" %>
 			<%= link_to "New Post", new_user_post_path(current_user), class:"navbar-brand"%>
-<%= link_to "My Posts", user_posts_path(current_user), class:"navbar-brand"%>
+      <%= link_to "My Posts", user_posts_path(current_user), class:"navbar-brand"%>
 
+      <%= link_to "All User", allusers_path, class:"navbar-brand" %>
       <% end %>
 
       <div class="navbar-brand">

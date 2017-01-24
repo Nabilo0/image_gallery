@@ -1,15 +1,67 @@
-<h2>My Profile</h2>
+<h2>Profile</h2>
 
-<% if current_user.id == @user.id %>
-<p></p>
+ 
+    <p><%= image_tag @user.avatar.url(:thumb) %></p>
+	     <p> Nick Name : <%= @user.nick_name%></p>
+    <p> Email: <%= @user.email%> </p>
 
-<p><%= image_tag @user.avatar.url(:thumb) %></p>
-	<p> Nick Name : <%= @user.nick_name%></p>
-	<p> Email: <%= @user.email%> </p>
-	
+	<section class="stats">
+         <%= render 'stats' %>
+        </section>
+	<!-- ============== -->
+<% provide(:title, @user.first_name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section>
+      <h1>
+         <%= @user.first_name %>
+         <% if @user.posts.any? %>
+          <p>posts (<%= @user.posts.count %>)</p>
+         </h1>
+      </section>
+
+       
+
+  </aside>
+       <% end %>
+  </div>
+ 
+
+ <% if current_user.id == @user.id %>
 <%= link_to "Edit User", edit_user_path(current_user)%></br>
 
  <% else %>
 
+<!-- follow unfollow button  -->
+
+  <div id="follow_form">
+    <% if current_user.following?(@user) %>
+      <%= render 'unfollow' %>
+        <% else %>
+      <%= render 'follow' %>
+    <% end %>
+  </div>
+  </br>
 <%= link_to "Sign in", login_path%>
-	<% end %>
+  <% end %>
+
+<div class="row">
+  <div class="col-md-8">
+
+ <% @user.posts.each do |t| %>
+    <tr>
+    <td>User ID: <%= t.user_id%></br></td>
+    <td>User Name :<%= t.user.first_name%></td></br>
+    <td>Discarption: <%= t.discarption%></td></br>
+     <p><%= image_tag t.avatar.url(:thumb) %></p>
+
+    <td>--------------------</td></br>
+    </tr>
+    <% end %>
+    
+</div>
+</div>
+ 
+
+  
+    

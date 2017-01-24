@@ -14,9 +14,19 @@ Rails.application.routes.draw do
         resources :posts, only: [:index, :show, :new, :create, :update, :edit, :destroy]
 
     end
+
+      resources :users do
+      member do
+      get :following, :followers
+    end
+  end
+
+  resources :relationships, only: [:create, :destroy]
       
+    get "/allusers" => "users#all"
 
          root 'welcome#index'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
