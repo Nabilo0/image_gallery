@@ -1,14 +1,24 @@
 <h2>Profile</h2>
+<% if current_user != nil%>
+
+    <% if current_user.king_kong? %>
+        <h3>Welcome King Kong</h3>
+            <% elsif current_user.admin? %>
+            <h3>Welcome, Admin</h3>
+        <% else %>
+        <h3>Welcome</h3>
+      <% end %>
 
  
     <p><%= image_tag @user.avatar.url(:thumb) %></p>
 	     <p> Nick Name : <%= @user.nick_name%></p>
     <p> Email: <%= @user.email%> </p>
 
-	<section class="stats">
+      <section class="stats">
          <%= render 'stats' %>
-        </section>
+      </section>
 	<!-- ============== -->
+
 <% provide(:title, @user.first_name) %>
 <div class="row">
   <aside class="col-md-4">
@@ -18,19 +28,20 @@
          <% if @user.posts.any? %>
           <p>posts (<%= @user.posts.count %>)</p>
          </h1>
-      </section>
-
-       
-
-  </aside>
-       <% end %>
+       </section>
+      </aside>
+     <% end %>
   </div>
  
+ <!--if for access level for king_kong  -->
+<% if current_user.king_kong? or current_user.admin?%>
+  <%= link_to "Edit User", edit_user_path(@user)%></br>
+<%end%>
+
 
  <% if current_user.id == @user.id %>
-<%= link_to "Edit User", edit_user_path(current_user)%></br>
-
- <% else %>
+    <%= link_to "Edit User", edit_user_path(current_user)%></br>
+      <% else %>
 
 <!-- follow unfollow button  -->
 
@@ -44,24 +55,8 @@
   </br>
 <%= link_to "Sign in", login_path%>
   <% end %>
-
-<div class="row">
-  <div class="col-md-8">
-
- <% @user.posts.each do |t| %>
-    <tr>
-    <td>User ID: <%= t.user_id%></br></td>
-    <td>User Name :<%= t.user.first_name%></td></br>
-    <td>Discarption: <%= t.discarption%></td></br>
-     <p><%= image_tag t.avatar.url(:thumb) %></p>
-
-    <td>--------------------</td></br>
-    </tr>
-    <% end %>
-    
-</div>
-</div>
  
 
-  
-    
+  <%else%>
+  <p>sign in</p>
+    <%end%>

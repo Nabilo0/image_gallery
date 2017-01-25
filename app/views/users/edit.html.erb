@@ -1,13 +1,23 @@
-<h2>Sign Up</h2>
+<h2>Edit Page</h2>
 
-<% if @user == current_user %>
-
-<%= form_for @user do |f| %>
+<% if @user == current_user or current_user.king_kong? or current_user.admin? %>
+ <%= form_for @user do |f| %>
 
   Nick Name: <%= f.text_field :nick_name %></br>
   First Name: <%= f.text_field :first_name %></br>
   Last Name: <%= f.text_field :last_name %></br>
-  Email: <%= f.text_field :email %>
+  Email: <%= f.text_field :email %></br>
+  <% if current_user.king_kong?%>
+  <div class="field">
+  <%= f.label :access_level, "Who are you? " %><br/>
+  <%= f.select :access_level, ['ordinary','admin','king_kong'] %>
+  <% elsif current_user.admin? %>
+  <%= f.label "you are admin " %><br/>
+  <%else %>
+  <%= f.label "you are user " %><br/>
+
+  <% end %>
+</div>
 
   <div class="form-group">
 		<%= f.label :avatar, 'User Photo', class:'col-sm-2 control-label' %>
@@ -19,6 +29,10 @@
     <%= f.submit "Update" %>
 
 <% end %>
-<% end %></br>
-
+<% if @user == current_user or current_user.king_kong?  %>
 <%= link_to "Delete Account", @user, method: :delete, data: {confirm: "You will DELETE",:style=>'color:red;', :class => "css_class"} %>
+<% else %>
+<p>you cant delete the is user coz you Admin </p>
+<% end %>
+<% end %>
+ 
