@@ -23,7 +23,7 @@ def edit
 end
 
 def update
-	@user = User.find(current_user)
+	@user = User.find(params[:id])
 		@user.update(new_user)
 			if @user.save
 				redirect_to user_path(current_user)
@@ -61,7 +61,7 @@ end
 	private
 
 	def new_user
-	params.require(:user).permit(:nick_name, :first_name, :last_name,:email, :password, :avatar)
+	params.require(:user).permit(:nick_name, :first_name, :last_name,:email, :password, :avatar, :access_level)
 
 	end
 end

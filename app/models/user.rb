@@ -14,6 +14,10 @@
 	 	has_many :following, through: :active_relationships, source: :followed
   	has_many :followers, through: :passive_relationships, source: :follower
 
+    enum access_level: [:ordinary, :admin, :king_kong]
+    
+
+
  	def follow(other_user)
    following << other_user
     # relationships.create(followed_id: other_user.id)
