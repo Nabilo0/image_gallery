@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+
+	def index
+
+	end
+
 	def show
 		@user = User.find_by_id(params[:id])
  	end
@@ -15,8 +20,8 @@ def create
 
  else
 	redirect_to '/signip'
-end
 	end
+end
 
 def edit
 	@user = User.find(params[:id])
@@ -41,22 +46,30 @@ def destroy
 # 		flash[:notice] = "Successfully Deleted"
 end
 
- def following
+def following
     @title = "Following"
     @user  = User.find(params[:id])
     @users = @user.following.paginate(page: params[:page])
     render 'show_follow'
-  end
+end
 
-  def followers
+def followers
     @title = "Followers"
     @user  = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
-  end
-  def all
-  	@user = User.all
-  end
+end
+def all
+		 # @user = User.search(params[:search]).all
+  	 # @user = User.all
+		 # @user = PgSearch.multisearch(params[:search])
+	if params[:search].present?
+      @user = User.perform_search(params[:search])
+    		else
+      @user = User.all
+	end
+
+end
 
 	private
 

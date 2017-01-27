@@ -44,7 +44,8 @@
       	  <% if current_user %>
   					Signed in as <%= current_user.email %> | <%= link_to "Logout", '/logout' %>
 						<% else %>
-  					<%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+  					<%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %> |    <%= link_to 'Sign in with Instagram', '/auth/instagram'%>
+
 					<% end %>
   		</div>
 

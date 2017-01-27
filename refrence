@@ -1,3 +1,17 @@
+ <%= link_to "Sign in with Instagram", 'https://api.instagram.com/oauth/authorize/?client_id=3193910d8af841f092a744ca33db3ee9&redirect_uri=http://localhost:3000/auth/instagram/callback&response_type=token'%>
+
+-----------------
+ def instagram
+    user.where( :provider => "instagram" ).first
+  end
+
+  def instagram_client
+    @instagram_client ||= Instagram.client( access_token: instagram.accesstoken )
+  end    
+-------------------------
+http://localhost:3000/auth/provider/callback
+------------------------------
+
 <div id="header">
         <% if signed_in? -%>
         Signed in as: <%= current_user.email %>
@@ -6,3 +20,51 @@
         <%= link_to t(".sign_in"), sign_in_path %>
         <% end -%>
       </div>
+----------------------------------------
+     <%= link_to "Sign in with Instagram", user_instagram_omniauth_authorize_path, class: "page-scroll" %>
+
+ <%= link_to 'Sign in with Instagram', 'https://api.instagram.com/oauth/authorize/?client_id=CLIENT-ID&redirect_uri=REDIRECT-URI&response_type=token'%>
+
+
+ <%= link_to "Sign in with Instagram", 'https://api.instagram.com/oauth/authorize/?client_id=[clientID]&redirect_uri=http://localhost&response_type=token'%>
+
+
+
+  def create_with_instagram
+   @user = User.from_omniauth(request.env['omniauth.auth'])
+   render :text => auth_hash.inspect
+  end
+
+---------------------------------
+  def instagram
+    generic_callback( 'instagram' )
+  	end
+  	
+    def generic_callback( provider )
+    @identity = Identity.find_for_oauth env["omniauth.auth"]
+
+    @user = @identity.user || current_user
+    if @user.nil?
+      temp_email = @identity.email
+      temp_email = "#{@identity.uid}@instagram.com"if provider == "instagram"
+      temp_password = SecureRandom.hex(3) if provider == "instagram"
+
+      @user = User.create( email: temp_email || "" , password: temp_password)    
+      @identity.update_attribute( :user_id, @user.id )
+    end
+
+	  if @user.email.blank? && @identity.email
+      @user.update_attribute( :email, @identity.email)
+    	end
+   end
+#------------------------
+
+def create_with_instagram
+   user = User.from_omniauth(auth_hash)
+    self.current_user = user
+    redirect_to root_path
+  end
+
+  def auth_hash
+    request.env['omniauth.auth']
+  end
