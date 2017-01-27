@@ -10,6 +10,16 @@ Rails.application.routes.draw do
     get '/signup' => 'users#new'
     post '/users' => 'users#create'
 
+    # for authentication // instgram
+    # start sessions
+    # get '/auth/:provider/callback', :to => 'sessions#create_with_instagram'
+    get '/auth/:provider/callback', to: 'sessions#create_with_instagram'
+    # fails sessions
+    get '/auth/failure', :to => 'sessions#failure'
+
+    #  get '/users/auth/:provider/upgrade' => 'omniauth_callbacks#upgrade', as: :user_omniauth_upgrade
+    # get '/users/auth/:provider/setup', :to => 'omniauth_callbacks#setup'
+
     resources :users, only: [:index, :show, :update, :edit, :destroy] do
         resources :posts, only: [:index, :show, :new, :create, :update, :edit, :destroy]
 

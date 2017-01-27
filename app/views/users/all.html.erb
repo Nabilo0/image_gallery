@@ -1,9 +1,18 @@
 <h3> All User </h3>
 
+ 
+
+<div class="artist_search.form-group">
+  <%= form_tag(allusers_path, method: "get") do %>
+    <%= text_field_tag :search, nil, placeholder: "Search User in first Name, Nick Name, Email ...", class: "form-control" %>
+   <%= submit_tag "search"%>
+   <% end %>
+</div>
+
 <% @user.each do |user|%>
 
 	<%= user.first_name %></br>
-	 <p><%= image_tag user.avatar.url(:thumb) %></p></br>
+	 	<p><%= image_tag user.avatar.url(:thumb) %></p></br>
  	<span><%= link_to "view my profile", user %></span></br>
 
-	<% end %>
+<% end %>
