@@ -16,13 +16,12 @@ Rails.application.routes.draw do
     get '/auth/:provider/callback', to: 'sessions#create_with_instagram'
     # fails sessions
     get '/auth/failure', :to => 'sessions#failure'
-
     #  get '/users/auth/:provider/upgrade' => 'omniauth_callbacks#upgrade', as: :user_omniauth_upgrade
     # get '/users/auth/:provider/setup', :to => 'omniauth_callbacks#setup'
 
     resources :users, only: [:index, :show, :update, :edit, :destroy] do
         resources :posts, only: [:index, :show, :new, :create, :update, :edit, :destroy]
-
+        resources :braintree, only: [:new]
     end
 
       resources :users do
@@ -32,10 +31,13 @@ Rails.application.routes.draw do
   end
 
   resources :relationships, only: [:create, :destroy]
-      
+    
+    post 'braintree/checkout'
+    
     get "/allusers" => "users#all"
+    post "/welcome/send_text" => 'users#send_text'
 
-         root 'welcome#index'
+    root 'welcome#index'
 
 
   # Example of regular route:

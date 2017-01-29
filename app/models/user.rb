@@ -1,8 +1,7 @@
  class User < ActiveRecord::Base
-
+    include Messenger
     include PgSearch
     # multisearchable :against => [:nick_name, :first_name]
-
      pg_search_scope :search,
                   against: [
                     :nick_name,
@@ -15,9 +14,6 @@
                       normalization: 2
                     }
                   }
-
-  
-
     has_secure_password
 
     mount_uploader :avatar, AvatarUploader
@@ -39,7 +35,13 @@
 
       # scope :nick_name, -> (nick_name) {where("nick_name like ?", "#{nick_name}")}
       # scope :first_name -> (first_name) {where("first_name like ?", "#{first_name}")}
- 
+ def clean_number
+  @num = self.phone.scan(/\d+/).join
+  # byebug
+  # phone[0] == '1' ? phone[0] = '' : phone
+  # phone unless phone.length != 16
+end
+
  def self.perform_search(keyword)
     if keyword.present?
     then User.search(keyword)

@@ -25,8 +25,8 @@ class PostsController < ApplicationController
 			 redirect_to user_path(current_user)
 		else
 
+		end
 	end
-end
 
 
 	private

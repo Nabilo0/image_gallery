@@ -24,7 +24,8 @@ gem 'pg_search'
 gem 'omniauth'
 gem 'omniauth-instagram'
 gem 'instagram'
-
+gem 'braintree'
+gem 'twilio-ruby'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

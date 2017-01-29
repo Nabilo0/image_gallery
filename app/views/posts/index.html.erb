@@ -1,19 +1,16 @@
 <h3>My Posts</h3>
 
  
-
 <% @post.each do |t| %>
 		<tr>
-
 	
-
+<table>
 		<td>User ID: <%= t.user_id%></br></td>
-		<td>User Name :<%= t.user.first_name%></td></br>
-		<td>Discarption: <%= t.discarption%></td></br>
-		 <p><%= image_tag t.avatar.url(:thumb) %></p>
-
-		<td>--------------------</td></br>
-		</tr>
+			<td>User Name :<%= t.user.first_name%></td></br>
+				<td>Discarption: <%= t.discarption%></td></br>
+		 		<p><%= image_tag t.avatar.url(:thumb) %></p>
+				<td>--------------------</td></br>
+			</tr>
 		<% end %>
-		
+	</table>
  
