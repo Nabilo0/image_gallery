@@ -1,13 +1,13 @@
 <h2>Profile</h2>
-<% if current_user != nil%>
-
-    <% if current_user.king_kong? %>
-        <h3>Welcome King Kong</h3>
-            <% elsif current_user.admin? %>
-            <h3>Welcome, Admin</h3>
+    <% if current_user != nil%>
+      <%= link_to "Make a Payment", new_user_braintree_path(current_user) %>
+        <% if current_user.king_kong? %>
+         <h3>Welcome <%= current_user.first_name %> your access level is King Kong</h3>
+          <% elsif current_user.admin? %>
+          <h3>Welcome,<%= current_user.first_name %> your access level is Admin</h3>
         <% else %>
-        <h3>Welcome</h3>
-      <% end %>
+      <h3>Welcome</h3>
+    <% end %>
 
  
     <p><%= image_tag @user.avatar.url(:thumb) %></p>
@@ -41,22 +41,23 @@
 
  <% if current_user.id == @user.id %>
     <%= link_to "Edit User", edit_user_path(current_user)%></br>
-      <% else %>
+  <% else %>
 
 <!-- follow unfollow button  -->
 
   <div id="follow_form">
     <% if current_user.following?(@user) %>
-      <%= render 'unfollow' %>
-        <% else %>
-      <%= render 'follow' %>
-    <% end %>
-  </div>
-  </br>
-<%= link_to "Sign in", login_path%>
+       <%= render 'unfollow' %>
+         <% else %>
+            <%= render 'follow' %>
+          <% end %>
+        </div>
+      </br>
+    <%= link_to "Sign in", login_path%>
   <% end %>
  
 
   <%else%>
   <p>sign in</p>
-    <%end%>
+  <%end%>
+

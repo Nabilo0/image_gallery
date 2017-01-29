@@ -19,20 +19,18 @@
 
   <div class="col-md-8">
 
-    <h3><%= @title %></h3>
+    <h1><%= @title %></h1>
     <% if @users.any? %>
       <ul class="users follow">
       	<%= @users.each do |n|%>
-        <p><%= image_tag n.avatar.url(:thumb) %></p>
-	     	<span><%= link_to "view my profile", n %></span>
+         <p><%= image_tag n.avatar.url(:thumb) %></p>
+	     	   <span><%= link_to "view my profile", n %></span>
 
-      	<p>First Name: <%= n.first_name %></p>
-      	<p>Posts: <%= n.posts.count %></p>
-
-      	<% end %>
-        	 </ul>
-        	 
-       <%= will_paginate %>
+      	   <p>First Name: <%= n.first_name %></p>
+      	 <p>Posts: <%= n.posts.count %></p>
+	       <% end %>
+  	   </ul>
+      <%= will_paginate %>
     <% end %>
   </div>
 </div>

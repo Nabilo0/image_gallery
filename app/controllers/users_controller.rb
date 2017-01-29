@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+	
+
 	def index
 
 	end
@@ -31,6 +33,9 @@ def update
 	@user = User.find(params[:id])
 		@user.update(new_user)
 			if @user.save
+
+				@user.send_sms(@user.phone)
+
 				redirect_to user_path(current_user)
 					flash[:notice] = "Successfully updated"
 			else
@@ -68,13 +73,24 @@ def all
     		else
       @user = User.all
 	end
-
 end
 
-	private
+def send_text
+		@num = User.new(new_user)
+		# byebug
+		# @after_scan = @num.clean_number
+		# @num.clean_number
+		# byebug
+		@num.send_sms(@num.phone)#()
+		redirect_to root_path
+		      flash[:danger] = ".Done"
 
+	end
+
+	private
+	 
 	def new_user
-	params.require(:user).permit(:nick_name, :first_name, :last_name,:email, :password, :avatar, :access_level)
+	params.require(:user).permit(:nick_name, :first_name, :last_name, :phone, :email, :password, :avatar, :access_level)
 
 	end
 end
