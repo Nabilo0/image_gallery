@@ -32,10 +32,12 @@ end
 def update
 	@user = User.find(params[:id])
 		@user.update(new_user)
+
 			if @user.save
+						@user.send_sms(@user.phone) unless @user.phone == ""
+						# @user.send_sms(@user.phone) unless @user = params[:user][:phone] != nil
 
-				@user.send_sms(@user.phone)
-
+ 
 				redirect_to user_path(current_user)
 					flash[:notice] = "Successfully updated"
 			else

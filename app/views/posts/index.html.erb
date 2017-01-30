@@ -1,16 +1,43 @@
 <h3>My Posts</h3>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 70%;
+}
 
- 
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 5px;
+}
+
+tr:nth-child(even) {
+    /*background-color: #dddddd;*/
+}
+</style>
+     <%= link_to "New Post", new_user_post_path(current_user), id: "new_link", remote: true %>
+
+
+
 <% @post.each do |t| %>
-		<tr>
-	
+
+  <% if current_user.id == t.user_id or current_user.king_kong? %>
+
+      
 <table>
-		<td>User ID: <%= t.user_id%></br></td>
-			<td>User Name :<%= t.user.first_name%></td></br>
-				<td>Discarption: <%= t.discarption%></td></br>
-		 		<p><%= image_tag t.avatar.url(:thumb) %></p>
-				<td>--------------------</td></br>
-			</tr>
-		<% end %>
-	</table>
- 
+  <tr>
+    <th>first Name</th>
+    <th>Discraption</th>
+    <th>image</th>
+    <th>#</th>
+  </tr>
+  <tr>
+    <td><%= t.user.first_name%></td>
+    <td><%= t.discarption%></td>
+    <td><%= image_tag t.avatar.url(:thumb)%></td>
+	<td><%= link_to 'Destroy',  { action: :destroy, id: t.id }, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
+  </tr>
+  </table>
+  <% end%>
+    <% end%>
