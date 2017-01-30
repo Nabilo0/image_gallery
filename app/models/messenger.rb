@@ -6,7 +6,7 @@ def send_sms(phone)
     # @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
     @client = Twilio::REST::Client.new acct_sid, auth_token
     from = '+14356592698'
-    byebug
+    # byebug
     message = @client.account.messages.create(
     	:from => from,
     	:to => '+60'+phone,

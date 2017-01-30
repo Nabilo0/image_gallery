@@ -4,6 +4,7 @@ class WelcomeController < ApplicationController
         # posts = Post.all.order('created_at DESC')
         # posts =  current_user.posts.last(2)
         @phone = User.new
+ 
  	end
-  
+    
 end
