@@ -1,4 +1,23 @@
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
+  gem 'rspec-rails'
+end
 
+bundle exec rspec
+rails generate rspec:model user
+rspec spec/models/user_spec.rb
+rspec spec/models/test_capybara.rb -f documentation
+bundle exec rspec
+==============++++++++=============++++++++++++++=================++++++++++++++=====
+table print ruby
+to print it nice,, the table
+go to to config = require 'table_print'
+and go the Gemfile >> gem 'table_print'
+and bundle after that bundle install
+and finally tp Todo.all
+
+==============
  <%= form_for post ,remote: true do |form| %>
  <div class="form-group">
         <%= form.label :avatar, 'User Photo', class:'col-sm-2 control-label' %>

@@ -4,8 +4,12 @@
 <%= form_for :user, url: '/users' do |f| %>
 
   Nick Name: <%= f.text_field :nick_name %></br>
+
   		Email: <%= f.text_field :email %></br>
+
   		Password: <%= f.password_field :password %></br>
+
+ 		Password confirmation: <%= f.password_field :password_confirmation %></br>
    <%= f.submit "Submit" %>
    
 <% end %>

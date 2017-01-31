@@ -21,7 +21,9 @@ def create
 		flash[:notice] = "Successfully created a new user"
 
  else
-	redirect_to '/signip'
+		redirect_to signup_path
+		flash[:notice] = "Email must be like example@ex.com && Password must be at lest 6 chracters" 
+ 
 	end
 end
 
@@ -48,7 +50,7 @@ end
 
 def destroy
 		@user = User.find(current_user)
-			@user.destroy
+		@user.destroy
 		redirect_to logout_path
 # 		flash[:notice] = "Successfully Deleted"
 end
@@ -68,7 +70,7 @@ def followers
 end
 def all
 		 # @user = User.search(params[:search]).all
-  	 # @user = User.all
+  	 	 # @user = User.all
 		 # @user = PgSearch.multisearch(params[:search])
 	if params[:search].present?
       @user = User.perform_search(params[:search])

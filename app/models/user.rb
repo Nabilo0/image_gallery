@@ -2,6 +2,17 @@
     include Messenger
     include PgSearch
     # multisearchable :against => [:nick_name, :first_name]
+    validates_confirmation_of :password
+
+  # this for test model
+  # ##################################
+   # validates_presence_of :password
+   # validates_presence_of :email
+   # validates :email, uniqueness: true
+# ##################################
+ # validates :email, format: {with: /\A([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})\z/,
+ # message: "Your Email should Be like : example@exaple.com"}
+
      pg_search_scope :search,
                   against: [
                     :nick_name,
@@ -42,10 +53,10 @@
   # phone unless phone.length != 16
 end
 
- def self.perform_search(keyword)
+  def self.perform_search(keyword)
     if keyword.present?
-    then User.search(keyword)
-    else 
+      then User.search(keyword)
+       else 
       all
     end
   end
@@ -61,9 +72,10 @@ end
 #   end
 
 def self.from_omniauth(auth_hash)
-   
+     # user = User.create!(first_name: auth_hash["extra"]["raw_info"]["first_name"], last_name: auth_hash["extra"]["raw_info"]["last_name"], email: auth_hash["extra"]["raw_info"]["email"])
+
     user = find_by(provider: auth_hash.provider, uid: auth_hash.uid)
-    user = create(uid: auth_hash.uid, provider: auth_hash.provider,:first_name => auth_hash['info']['firstname'], :nick_name => auth_hash['info']['name'], :password => auth_hash['uid'], :avatar => auth_hash["info"]["image"]) if user.nil?
+    user = create(uid: auth_hash.uid, provider: auth_hash.provider,:first_name => auth_hash['info']['firstname'], :nick_name => auth_hash['info']['nickname'], :password => auth_hash['uid'], :avatar => auth_hash["image"]) if user.nil?
         # user = create(:first_name => auth_hash['info']['firstname'], :nick_name => auth_hash['info']['name'], :password => auth_hash['uid'] )
     user.accesstoken = auth_hash.credentials.token
     # user.password = '   '
