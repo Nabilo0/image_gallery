@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
     def create_with_instagram
     #     @auth = request.env['omniauth.auth']
     # omniauth = request.env['omniauth.auth']
-     byebug
+     # byebug
     user = User.from_omniauth(auth_hash)
     # byebug
     # render :text => auth_hash.inspect
