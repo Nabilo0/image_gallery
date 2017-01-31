@@ -9,7 +9,7 @@ def send_sms(phone)
     # byebug
     message = @client.account.messages.create(
     	:from => from,
-    	:to => '+60'+phone,
+    	:to => phone,
     	:body => '		HH 
                   SSSSSS
                  SSSSSSSS

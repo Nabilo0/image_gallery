@@ -18,7 +18,12 @@ def checkout
 
 if result.success?
 	# @user
-	redirect_to user_path(current_user), :flash => { :success => "Transaction successful!"}
+	# current_user.refreshtoken == nonce_from_the_client
+	# byebug
+	# current_user.update_attributes(:refreshtoken => nonce_from_the_client)
+	 current_user.update_attributes(:payment => nonce_from_the_client )
+
+ 	redirect_to user_path(current_user), :flash => { :success => "Transaction successful!"}
 else
 redirect_to new_user_braintree_path(current_user), :flash => {:error => "Transaction filed , Please try again"}
  
