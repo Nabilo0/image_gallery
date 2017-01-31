@@ -1,6 +1,11 @@
 <h2>Profile</h2>
+  <%if current_user.payment == nil %>
+      <%= link_to "Premier Account 50$ ", new_user_braintree_path(current_user) %>
+        <% else %>
+      <%= link_to "Congratulation you are premier" %>
+    <%end%>
+
     <% if current_user != nil%>
-      <%= link_to "Make a Payment", new_user_braintree_path(current_user) %>
         <% if current_user.king_kong? %>
          <h3>Welcome <%= current_user.first_name %> your access level is King Kong</h3>
           <% elsif current_user.admin? %>
