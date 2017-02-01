@@ -4,10 +4,10 @@
 
  <% if current_user != nil %></br>
 	<h2>Hello </h2>
-		<% if current_user.followers.count >= 1 %>
-					<% current_user.followers.each do |follower| %>
-							<%=follower.nick_name %></br>
-							<%  last_post = follower.posts.last %>
+		<% if current_user.following.count >= 1 %>
+					<% current_user.following.each do |follow| %>
+							<%=follow.nick_name %></br>
+							<%  last_post = follow.posts.last %>
     			<p><%= image_tag last_post.avatar.url(:thumb) %></p></br>
   			<p><%= last_post.discarption %></p></br>
 			<% end %>
