@@ -1,0 +1,32 @@
+	steps to uploas your app to heroku
+	heroku login
+	cd you app folder
+	heroku create
+	heroku apps:rename image-gallery-2017
+
+	then write those gems in gemfile
+	group :production do
+	# Heroku
+	#==================
+	gem 'rails_12factor' #Heroku Gem Supports
+	gem 'puma' #Using puma for
+	end
+
+bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}
+git add .
+git commit -m "adding heroku"
+git status
+git push heroku master
+heroku logs
+heroku run rake db:migrate
+heroku run rake db:seed
+=====================
+
+
+git init
+heroku git:remote -a obscure-waters-58674
+git config --list | grep heroku
+++git commit -am "make it better"++
+
+
+
