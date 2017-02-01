@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     post 'braintree/checkout'
     
     get "/allusers" => "users#all"
-    post "/welcome/send_text" => 'users#send_text'
+    # post "/welcome/send_text" => 'users#send_text'
 
     root 'welcome#index'
 
