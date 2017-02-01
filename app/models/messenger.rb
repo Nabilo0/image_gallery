@@ -1,8 +1,9 @@
 module Messenger
-
-def send_sms(phone)
-	acct_sid = ENV['TWILIO_ACCOUNT_SID']
-	auth_token = ENV['TWILIO_AUTH_TOKEN']
+ def send_sms(phone)
+	# acct_sid = ENV['TWILIO_ACCOUNT_SID']
+	# auth_token = ENV['TWILIO_AUTH_TOKEN']
+    acct_sid = ENV['AC6027eb961e813057ba54423c2c7ca2c2']
+    auth_token = ENV['0fb7c57039e77420eae97f7b12f18466']
     # @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
     @client = Twilio::REST::Client.new acct_sid, auth_token
     from = '+14356592698'
