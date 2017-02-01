@@ -1,7 +1,5 @@
 <h1>Home page</h1>
 
- 
-
  <% if current_user != nil %></br>
 	<h2>Hello </h2>
 		<% if current_user.following.count >= 1 %>
@@ -14,16 +12,8 @@
 	<% end %>
 
 	<% else %>
-
+<p> You must sign in </p>
  	<% end %>
  
-<!-- 
-		if you want all the post of user so we should to do
-		at line 7 
-		follower.posts.each do |post|
-		post.discarption
-		end
-		coz this is loop for all user's post
- -->
 
 

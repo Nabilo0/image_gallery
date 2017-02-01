@@ -1,3 +1,14 @@
+<!-- 
+    if you want all the post of user so we should to do
+    at line 7 
+    follower.posts.each do |post|
+    post.discarption
+    end
+    coz this is loop for all user's post
+ -->
+
+=================
+===
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
