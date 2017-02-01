@@ -9,6 +9,18 @@ rails generate rspec:model user
 rspec spec/models/user_spec.rb
 rspec spec/models/test_capybara.rb -f documentation
 bundle exec rspec
+++++++++++++++++++++++++++
+massage phone
+ <div>
+ <%= form_for @phone, url: '/welcome/send_text' do |f| %>
+    <%= f.label :phone %>
+      <%= f.text_field :phone %></br>
+    <%= f.submit 'send massage', class: 'btn btn-primary' %>
+  <% end %>
+ </div>
+
+
+
 ==============++++++++=============++++++++++++++=================++++++++++++++=====
 table print ruby
 to print it nice,, the table

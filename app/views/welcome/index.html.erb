@@ -2,13 +2,8 @@
 
  
 
-
-
-
-
-
  <% if current_user != nil %></br>
-	<p>hello </p>
+	<h2>Hello </h2>
 		<% if current_user.followers.count >= 1 %>
 					<% current_user.followers.each do |follower| %>
 							<%=follower.nick_name %></br>
@@ -30,14 +25,5 @@
 		end
 		coz this is loop for all user's post
  -->
-
- <div>
- <%= form_for @phone, url: '/welcome/send_text' do |f| %>
- 		<%= f.label :phone %>
- 			<%= f.text_field :phone %></br>
- 		<%= f.submit 'send massage', class: 'btn btn-primary' %>
- 	<% end %>
- </div>
-
 
 
