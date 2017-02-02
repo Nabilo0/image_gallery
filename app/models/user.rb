@@ -6,8 +6,8 @@
 
   # this for test model
   # ##################################
-   validates_presence_of :password
-   validates_presence_of :email
+   # validates_presence_of :password
+   # validates_presence_of :email
     validates :email, uniqueness: true
 # ##################################
  # validates :email, format: {with: /\A([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})\z/,
