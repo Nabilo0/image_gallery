@@ -1,18 +1,19 @@
 <!-- 
-    if you want all the post of user so we should to do
-    at line 7 
-    follower.posts.each do |post|
-    post.discarption
-    end
-    coz this is loop for all user's post
- -->
+  if you want all the post of user so we should to do
+  at line 7 
+  follower.posts.each do |post|
+  post.discarption
+  end
+  coz this is loop for all user's post
+-->
 
 =================
-===
+repcs:
+
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-  gem 'rspec-rails'
+# Call 'byebug' anywhere in the code to stop execution and get a debugger console
+gem 'byebug'
+gem 'rspec-rails'
 end
 
 bundle exec rspec
@@ -22,17 +23,14 @@ rspec spec/models/test_capybara.rb -f documentation
 bundle exec rspec
 ++++++++++++++++++++++++++
 massage phone
- <div>
- <%= form_for @phone, url: '/welcome/send_text' do |f| %>
-    <%= f.label :phone %>
-      <%= f.text_field :phone %></br>
-    <%= f.submit 'send massage', class: 'btn btn-primary' %>
-  <% end %>
- </div>
-
-
-
-==============++++++++=============++++++++++++++=================++++++++++++++=====
+<div>
+<%= form_for @phone, url: '/welcome/send_text' do |f| %>
+  <%= f.label :phone %>
+    <%= f.text_field :phone %></br>
+  <%= f.submit 'send massage', class: 'btn btn-primary' %>
+<% end %>
+</div>
+==============++++++++=============++++++++++++++=================++++++++++++++=
 table print ruby
 to print it nice,, the table
 go to to config = require 'table_print'
@@ -41,119 +39,119 @@ and bundle after that bundle install
 and finally tp Todo.all
 
 ==============
- <%= form_for post ,remote: true do |form| %>
- <div class="form-group">
-        <%= form.label :avatar, 'User Photo', class:'col-sm-2 control-label' %>
-          <div class="col-sm-10">
-        <%= form.file_field :avatar  %>
+<%= form_for post ,remote: true do |form| %>
+<div class="form-group">
+      <%= form.label :avatar, 'User Photo', class:'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+      <%= form.file_field :avatar  %>
+  </div>
+</div>
+
+<div class="form-group">
+    <div class="col-sm-10">
+    Discarption: <%= form.text_field :discarption %>
+   </div>
+</div>
+<div class="col-sm-10">
+      <%= form.submit "Submit" %>
     </div>
-  </div>
-  
-  <div class="form-group">
-      <div class="col-sm-10">
-      Discarption: <%= form.text_field :discarption %>
-     </div>
-  </div>
-  <div class="col-sm-10">
-        <%= form.submit "Submit" %>
-      </div>
 <% end %>
 
 ajax stuff
- 
+
 <div style="border: 1px solid #cacaca; padding: 120px; margin: 0 20px 0 20px;">
- 
 
-  <%= render 'form', post: [current_user, @post] %>
 
-  =========================
+<%= render 'form', post: [current_user, @post] %>
+
+=========================
 
 Using remote: true option allows us to submit this form with ajax. This will disable the default Rails mechanism that would have otherwise navigated us to /tasks/ne
 ==============
 require 'rubygems' # not necessary with ruby 1.9 but included for completeness
-    require 'twilio-ruby' # put your own credentials here
-    account_sid = '<AccountSid>'
-    auth_token = '<AuthToken>'
+  require 'twilio-ruby' # put your own credentials here
+  account_sid = '<AccountSid>'
+  auth_token = '<AuthToken>'
 
-    # set up a client to talk to the Twilio REST API
-    @client = Twilio::REST::Client.new account_sid, auth_token
-    @client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
-    @client.account.messages.create({
-        :to => '<ToNumber>',
-        :from => '<FromNumber>',
-        :body => '<BodyText>',
-    })
-       ------
-        twilio_number = ENV['TWILIO_NUMBER']
-    client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+  # set up a client to talk to the Twilio REST API
+  @client = Twilio::REST::Client.new account_sid, auth_token
+  @client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
+  @client.account.messages.create({
+      :to => '<ToNumber>',
+      :from => '<FromNumber>',
+      :body => '<BodyText>',
+  })
+     ------
+      twilio_number = ENV['TWILIO_NUMBER']
+  client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
 -----------------------------
- <%= link_to "Sign in with Instagram", 'https://api.instagram.com/oauth/authorize/?client_id=3193910d8af841f092a744ca33db3ee9&redirect_uri=http://localhost:3000/auth/instagram/callback&response_type=token'%>
+<%= link_to "Sign in with Instagram", 'https://api.instagram.com/oauth/authorize/?client_id=3193910d8af841f092a744ca33db3ee9&redirect_uri=http://localhost:3000/auth/instagram/callback&response_type=token'%>
 
 -----------------
- def instagram
-    user.where( :provider => "instagram" ).first
-  end
+def instagram
+  user.where( :provider => "instagram" ).first
+end
 
-  def instagram_client
-    @instagram_client ||= Instagram.client( access_token: instagram.accesstoken )
-  end    
+def instagram_client
+  @instagram_client ||= Instagram.client( access_token: instagram.accesstoken )
+end    
 -------------------------
 http://localhost:3000/auth/provider/callback
 ------------------------------
 
 <div id="header">
-        <% if signed_in? -%>
-        Signed in as: <%= current_user.email %>
-        <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
-        <% else -%>
-        <%= link_to t(".sign_in"), sign_in_path %>
-        <% end -%>
-      </div>
+      <% if signed_in? -%>
+      Signed in as: <%= current_user.email %>
+      <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
+      <% else -%>
+      <%= link_to t(".sign_in"), sign_in_path %>
+      <% end -%>
+    </div>
 ----------------------------------------
-     <%= link_to "Sign in with Instagram", user_instagram_omniauth_authorize_path, class: "page-scroll" %>
+   <%= link_to "Sign in with Instagram", user_instagram_omniauth_authorize_path, class: "page-scroll" %>
 
- <%= link_to 'Sign in with Instagram', 'https://api.instagram.com/oauth/authorize/?client_id=CLIENT-ID&redirect_uri=REDIRECT-URI&response_type=token'%>
-
-
- <%= link_to "Sign in with Instagram", 'https://api.instagram.com/oauth/authorize/?client_id=[clientID]&redirect_uri=http://localhost&response_type=token'%>
+<%= link_to 'Sign in with Instagram', 'https://api.instagram.com/oauth/authorize/?client_id=CLIENT-ID&redirect_uri=REDIRECT-URI&response_type=token'%>
 
 
+<%= link_to "Sign in with Instagram", 'https://api.instagram.com/oauth/authorize/?client_id=[clientID]&redirect_uri=http://localhost&response_type=token'%>
 
-  def create_with_instagram
-   @user = User.from_omniauth(request.env['omniauth.auth'])
-   render :text => auth_hash.inspect
-  end
+
+
+def create_with_instagram
+ @user = User.from_omniauth(request.env['omniauth.auth'])
+ render :text => auth_hash.inspect
+end
 
 ---------------------------------
-  def instagram
-    generic_callback( 'instagram' )
+def instagram
+  generic_callback( 'instagram' )
+	end
+	
+  def generic_callback( provider )
+  @identity = Identity.find_for_oauth env["omniauth.auth"]
+
+  @user = @identity.user || current_user
+  if @user.nil?
+    temp_email = @identity.email
+    temp_email = "#{@identity.uid}@instagram.com"if provider == "instagram"
+    temp_password = SecureRandom.hex(3) if provider == "instagram"
+
+    @user = User.create( email: temp_email || "" , password: temp_password)    
+    @identity.update_attribute( :user_id, @user.id )
+  end
+
+  if @user.email.blank? && @identity.email
+    @user.update_attribute( :email, @identity.email)
   	end
-  	
-    def generic_callback( provider )
-    @identity = Identity.find_for_oauth env["omniauth.auth"]
-
-    @user = @identity.user || current_user
-    if @user.nil?
-      temp_email = @identity.email
-      temp_email = "#{@identity.uid}@instagram.com"if provider == "instagram"
-      temp_password = SecureRandom.hex(3) if provider == "instagram"
-
-      @user = User.create( email: temp_email || "" , password: temp_password)    
-      @identity.update_attribute( :user_id, @user.id )
-    end
-
-	  if @user.email.blank? && @identity.email
-      @user.update_attribute( :email, @identity.email)
-    	end
-   end
+ end
 #------------------------
 
 def create_with_instagram
-   user = User.from_omniauth(auth_hash)
-    self.current_user = user
-    redirect_to root_path
-  end
+ user = User.from_omniauth(auth_hash)
+  self.current_user = user
+  redirect_to root_path
+end
 
-  def auth_hash
-    request.env['omniauth.auth']
-  end
+def auth_hash
+  request.env['omniauth.auth']
+end
