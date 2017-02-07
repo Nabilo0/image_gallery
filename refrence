@@ -1,3 +1,20 @@
+ if current_user != nil %></br>
+  <h2>Hello </h2>
+    <% if current_user.following.count >= 1 %>
+          <% current_user.following.each do |follow| %>
+              NickName: <%=follow.nick_name %></br>
+              Email:<%=follow.email %></br>
+              <%  last_post = follow.posts.last %>
+          <p><%= image_tag last_post.avatar.url(:thumb) %></p></br>
+        <p><%= last_post.discarption %></p></br>
+      <% end %>
+  <% end %>
+
+  <% else %>
+<p> You must sign in </p>
+  <% end %>
+ 
+===========================
 <!-- 
   if you want all the post of user so we should to do
   at line 7 
