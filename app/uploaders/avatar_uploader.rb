@@ -5,8 +5,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  # storage :file
+  storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -18,6 +18,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
     # process resize_to_limit: [100, 100]
     process resize_to_fit: [100, 100]
     process convert: 'png'
+  end
+  def filename
+    super.chomp(File.extname(super)) + '.png' if original_filename.present?
   end
   # version :thumbb do
   #   process resize_to_limit: [300, 300]
