@@ -17,6 +17,8 @@ $ git add .
 $ git commit -am "make it better"
 $ git push heroku master
 ========
+figaro heroku:set -e production
+========
 	steps to uploas your app to heroku
 	heroku login
 	cd you app folder
