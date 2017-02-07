@@ -84,7 +84,7 @@ def self.from_omniauth(auth_hash)
     # user.nick_name = auth_hash.info.username
     # user.email = auth_hash['info']['email']
     # user.nick_name = auth_hash['info']['username']
-    user.save!
+  user.save!
     user
     # where(provider: auth_hash.provider, uid: auth_hash.uid).first_or_initialize.tap do |user|
     # user.provider = auth_hash.provider

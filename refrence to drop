@@ -1,0 +1,26 @@
+ou need to drop that table from the sql lite console (You will lost all the data contained in it)
+
+    Access the sql lite console, type in terminal
+    sqlite3 db/development.sqlite3
+
+    Drop table (dont forget the last ; (semicolon))
+    drop table table_name;
+
+    Exit sql lite console
+    .quit
+
+    run db:migrate again
+    bin/rake db:migrate
+yuou need to drop that table from the sql lite console (You will lost all the data contained in it)
+
+    Access the sql lite console, type in terminal
+    sqlite3 db/development.sqlite3
+
+    Drop table (dont forget the last ; (semicolon))
+    drop table table_name;
+
+    Exit sql lite console
+    .quit
+
+    run db:migrate again
+    bin/rake db:migrate
